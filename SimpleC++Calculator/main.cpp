@@ -10,28 +10,7 @@ int main()
     bool useLastNumber = false;
 
     while (true) {
-        if (useLastNumber == false) {
-            std::cout << "Zadaj vyraz:" << std::endl;
-            std::cin >> number[0] >> operand >> number[1];
-        }
-        else {
-            char ans;
-            //std::cout << "Vo vyraze pouzi 'v' alebo 'V' ako vysledok z minuleho vyrazu.";
-            try {
-                std::cin >> ans >> operand >> number[1];
-                number[0] = result;
-            }
-            catch (const std::exception& ex) {
-                std::cerr << ex.what() << std::endl;
-            }
-            catch (...) {
-                std::cin >> number[0] >> operand >> ans;
-                number[1] = result;
-            }
-            useLastNumber = false;
-        }
-
-        switch (operand) {
+        /*switch (operand) {
         case '+':
             result = number[0] + number[1];
             break;
@@ -47,16 +26,30 @@ int main()
         case '%':
             result = (int)number[0] % (int)number[1];
             break;
+        }*/
+
+        if (operand == '+') {
+            result = number[0] + number[1];
+        }
+        else if (operand == '-') {
+            result = number[0] - number[1];
+        }
+        else if (operand == '*') {
+            result = number[0] * number[1];
+        }
+        else if (operand == '/'){
+            result = number[0] / number[1];
+        }
+        else if (operand == '%') {
+            result = int(number[0]) % int(number[1]);
         }
 
         std::cout << result << std::endl;
+
         char p;
         std::cin >> p;
         if (p == 'Q' || p == 'q') {
             break;
-        }
-        else if (p == 'T' || p == 't') {
-            useLastNumber = true;
         }
     }
     
